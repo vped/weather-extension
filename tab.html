@@ -1,0 +1,34 @@
+<html data-ng-app="myApp" ng-csp>
+<head>
+    <meta charset="UTF-8">
+    <title>Presently</title>
+    <link rel="stylesheet" href="./js/vendor/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div ng-controller="MainCtrl">
+        <h3>WELCOME TO  VED'S APP WORLD</h3>
+        <div id="datetime">
+            <h1>Time Is:{{ date.raw | date:'hh mm ss' }}</h1>
+            <h2>{{ date.raw | date:'EEEE, MMMM yyyy' }}</h2>
+        </div>
+        <div id="forecast">
+            <ul class="row list-unstyled">
+                <li ng-repeat="day in weather.forecast.forecastday" class="col-md-3">
+                    <div ng-class="{today: $index == 0}">
+                        <img class="{{ day.icon }}" ng-src="{{ day.icon_url }}" />
+                        <h3>{{ day.high.celsius }}</h3>
+                        <h4 ng-if="$index == 0">Now</h4>
+                        <h4 ng-if="$index != 0">{{ day.date.weekday }}</h4>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+<script src="./js/vendor/angular/angular.min.js"></script>
+<script src="./js/vendor/angular-route/angular-route.min.js"></script>
+<script src="./js/app.js"></script>
+</body>
+</html>
